@@ -1,0 +1,33 @@
+{
+  "name": "Contacto",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "tefelono": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "foto": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "propiedades": {
+      "type": "hasMany",
+      "model": "Propiedad",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

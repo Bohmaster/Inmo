@@ -1,0 +1,25 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "Propiedad": 3,
+    "Contacto": 2
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "Propiedad": {
+      "1": "{\"nombre\":\"sad\",\"descripcion\":\"asdasdsadad\",\"operacion\":\"venta\",\"tipo_propiedad\":\"departamento\",\"dormitorios\":\"monoambiente\",\"localidad\":\"sanLorenzo/sanMartin\",\"direccion\":\"asdasda\",\"codigo_referencia\":\"dadadadad\",\"precio\":\"ada\",\"piso\":\"dadadadsad\",\"acceso\":\"dada\",\"banios\":\"sdasdasd\",\"antiguedad\":\"asdasda\",\"superficie_aprox\":\"dadadad\",\"forma_pago\":\"adadadad\",\"foto_1\":\"IMG_1083.jpg\",\"foto_2\":\"casa02.jpg\",\"foto_3\":null,\"foto_4\":null,\"foto_5\":null,\"foto_6\":null,\"destacado\":true,\"cochera\":true,\"contactoId\":1,\"id\":1}",
+      "2": "{\"nombre\":\"sad\",\"descripcion\":\"asdadsad\",\"operacion\":\"alquiler\",\"tipo_propiedad\":\"casa\",\"dormitorios\":\"monoambiente\",\"localidad\":\"rosario\",\"direccion\":\"Juan Manuel de Rosas 1802, Rosario\",\"codigo_referencia\":\"1293108231\",\"precio\":null,\"piso\":null,\"acceso\":null,\"banios\":null,\"antiguedad\":null,\"superficie_aprox\":null,\"forma_pago\":null,\"foto_1\":\"casa06.jpg\",\"foto_2\":\"casa04.jpg\",\"foto_3\":null,\"foto_4\":null,\"foto_5\":null,\"foto_6\":null,\"destacado\":true,\"cochera\":null,\"contactoId\":1,\"id\":2}"
+    },
+    "Contacto": {
+      "1": "{\"nombre\":\"Ramiro Trovant\",\"email\":\"vtrovant@hotmail.com\",\"foto\":\"15202487_1280005645424316_7664810921832077301_n.jpg\",\"telefono\":\"4851144\",\"id\":1}"
+    }
+  }
+}

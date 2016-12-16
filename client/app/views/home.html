@@ -1,0 +1,165 @@
+<div class="inicio" id="inicio">
+    <div class="slider w-slider" data-animation="slide" data-autoplay="1" data-delay="4000" data-duration="500" data-infinite="1">
+        <div class="divsobreslider"></div>
+        <div class="mask w-slider-mask">
+            <div class="slide1 w-slide">
+                <div class="divslider">
+                    <h2 class="destaca txtslider" data-ix="texto-slider">50 años de experiencia<br>en el rubro inmobiliario.</h2>
+                </div>
+            </div>
+            <div class="slide2 w-slide">
+                <div class="divslider">
+                    <h2 class="txtslider" data-ix="texto-slider">Compre<br>Venda<br>Alquile<br>Garantizamos su mejor opción.</h2>
+                </div>
+            </div>
+            <div class="slide3 w-slide">
+                <div class="divslider">
+                    <h2 class="txtslider" data-ix="texto-slider">Nuestra experiencia y responsabilidad garantizan la mejor atención.</h2>
+                </div>
+            </div>
+            <div class="slide4 w-slide">
+                <div class="divslider">
+                    <h2 class="txtslider" data-ix="texto-slider">Asesoramiento jurídico<br>especializado.<br>Dra. Marcela Mascanfroni</h2>
+                </div>
+            </div>
+        </div>
+        <div class="slidenav w-shadow w-slider-nav"></div>
+    </div>
+</div>
+<div class="divsepara">
+    <div class="divbuscador1">
+        <div class="divbusca">
+            <div class="h4titbuscador">Encuentre la propiedad que está buscando</div>
+            <div class="w-row">
+                <div class="w-col w-col-3">
+                    <div class="dropdopciones w-dropdown" data-delay="0">
+                        <div class="w-dropdown-toggle">
+                            <div class="txtopcion">Operación</div>
+                            <div class="iconoselec w-icon-dropdown-toggle"></div>
+                        </div>
+                        <nav class="droplist w-dropdown-list"><a class="droplink operacion w-dropdown-link" href="#">Alquiler</a><a class="droplink operacion w-dropdown-link"
+                                href="#">Venta</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="w-col w-col-3">
+                    <div class="dropdopciones w-dropdown" data-delay="0">
+                        <div class="w-dropdown-toggle">
+                            <div class="txtopcion">Propiedad</div>
+                            <div class="iconoselec w-icon-dropdown-toggle"></div>
+                        </div>
+                        <nav class="droplist w-dropdown-list"><a class="droplink propiedad w-dropdown-link" href="#">Casa</a><a class="droplink propiedad w-dropdown-link"
+                                href="#">Departamento</a><a class="droplink propiedad w-dropdown-link" href="#">Barrio privado</a>
+                            <a
+                                class="droplink propiedad w-dropdown-link" href="#">Cochera</a><a class="droplink propiedad w-dropdown-link" href="#">Locales/Oficinas</a><a class="droplink propiedad w-dropdown-link"
+                                    href="#">Terrenos</a><a class="droplink propiedad w-dropdown-link" href="#">Campos</a>
+                                <a
+                                    class="droplink propiedad w-dropdown-link" href="#">Galpones</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="w-col w-col-3">
+                    <div class="dropdopciones w-dropdown" data-delay="0">
+                        <div class="w-dropdown-toggle">
+                            <div class="txtopcion">Dormitorios</div>
+                            <div class="iconoselec w-icon-dropdown-toggle"></div>
+                        </div>
+                        <nav class="droplist w-dropdown-list"><a class="dorm droplink w-dropdown-link" href="#">Monoambiente</a><a class="dorm droplink w-dropdown-link"
+                                href="#">1 dormitorio</a><a class="dorm droplink w-dropdown-link" href="#">2&nbsp;dormitorios</a>
+                            <a
+                                class="dorm droplink w-dropdown-link" href="#">3&nbsp;dormitorios</a><a class="dorm droplink w-dropdown-link" href="#">4&nbsp;dormitorios ó más</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="w-col w-col-3">
+                    <div class="dropdopciones w-dropdown" data-delay="0">
+                        <div class="w-dropdown-toggle">
+                            <div class="txtopcion">Localidad</div>
+                            <div class="iconoselec w-icon-dropdown-toggle"></div>
+                        </div>
+                        <nav class="droplist w-dropdown-list"><a class="droplink w-dropdown-link" href="#">Rosario</a><a class="droplink local w-dropdown-link"
+                                href="#">San Lorenzo<br>Pto. San Martín</a><a class="droplink local w-dropdown-link" href="#">Funes/Roldán</a>
+                            <a
+                                class="droplink local w-dropdown-link" href="#">F.L. Beltrán<br>Cap. Bermudez</a><a class="droplink w-dropdown-link" href="#">Uruguay</a><a class="droplink w-dropdown-link"
+                                    href="#">Otros</a>
+                        </nav>
+                    </div>
+                </div>
+            </div><a class="botonbuscar w-button" >BUSCAR</a>
+        </div>
+    </div>
+    <div class="buscador">
+        <div class="h4titbuscador">Encuentre la propiedad que está buscando</div>
+        <div class="w-form">
+            <form id="email-form" name="email-form">
+                <div class="w-row">
+                    <div class="w-col w-col-3">
+                        <div class="txtcatbuscador">Operación</div>
+                        <select ng-model="data.operacion"
+                            class="select w-select"
+                            ng-options="operacion as operacion.label for operacion in operaciones"
+                            ng-change="selected()"
+                            id="field"
+                            name="field">
+                        </select>
+                    </div>
+                    <div class="w-col w-col-3">
+                        <div class="txtcatbuscador">Tipo de propiedad</div>
+                        <select ng-model="data.tipo_propiedad"
+                            class="select w-select"
+                            ng-options="tipo as tipo.label for tipo in tipo_propiedad"
+                            ng-change="selected()"
+                            id="field"
+                            name="field">
+                        </select>
+                    </div>
+                    <div class="w-col w-col-3">
+                        <div class="txtcatbuscador">Dormitorios</div>
+                        <select ng-model="data.dormitorios"
+                            class="select w-select"
+                            ng-options="dormitorio as dormitorio.label for dormitorio in dormitorios"
+                            ng-change="selected()"
+                            id="field"
+                            name="field">
+                        </select>
+                    </div>
+                    <div class="w-col w-col-3">
+                        <div class="txtcatbuscador">Localidad</div>
+                        <select ng-model="data.localidad"
+                            class="select w-select"
+                            ng-options="localidad as localidad.label for localidad in localidades"
+                            ng-change="selected()"
+                            id="field"
+                            name="field">
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="w-form-done">
+                <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+                <div>Oops! Something went wrong while submitting the form</div>
+            </div>
+        </div><a class="botonbuscar w-button" ui-sref="app.propiedades({filter: data})">BUSCAR</a>
+    </div>
+    <h3 class="tittxtinicio">Consulte nuestra base de datos de propiedades</h3>
+    <p class="parrinicio">Contamos con la mas variada <strong>oferta de inmuebles para la venta y alquiler</strong>. Envíe su <strong>consul</strong>ta
+        para recibir nuestro <strong>asesoramiento especializado</strong>
+    </p>
+</div>
+<div class="icnicio2">
+    <div class="divtextinicio">
+        <div class="titdestacado">Destacado</div>
+    </div>
+    <div class="rowdestaca w-row">
+        <div class="w-clearfix w-col w-col-5 w-col-medium-6"><img class="imgdestaca" sizes="(max-width: 479px) 100vw, (max-width: 767px) 84vw, (max-width: 991px) 43vw, 35vw"
+                src="{{containerURL}}{{destacados.foto_1}}" srcset="{{containerURL}}{{destacados.foto_1}} 800w">
+        </div>
+        <div class="w-clearfix w-col w-col-7 w-col-medium-6">
+            <div class="txtdestacainicio">{{destacados.operacion}}+ {{destacados.tipo_propiedad}} + {{destacados.codigo_referencia}}</div>
+            <div class="chica txtdestacainicio">{{destacados.direccion}} + {{destacados.localidad}}</div>
+            <p class="parrprop">{{destacados.descripcion}}</p><a class="botonctacto negro w-button">Ver más</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>My First Admin</title>
+    <link rel="stylesheet" href="node_modules/ng-admin/build/ng-admin.min.css">
+  </head>
+  <body ng-app="myApp">
+    <div ui-view="ng-admin"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+
+    <script src="node_modules/ng-admin/build/ng-admin.min.js"></script>
+
+
+    <script type="text/javascript">
+        console.log(jQuery);
+
+        var API_URL = "http://localhost:3000/api/";
+
+        var myApp = angular.module('myApp', ['ng-admin']);
+
+        myApp.config(['NgAdminConfigurationProvider', function(NgAdminConfigurationProvider) {
+            var nga = NgAdminConfigurationProvider;
+            // create an admin application
+            var admin = nga.application('Administrador Alonso & Asociados').baseApiUrl(API_URL);
+
+            var propiedad = nga.entity("Propiedads");
+            var contacto  = nga.entity("Contactos");
+        
+            propiedad.listView()
+                .fields([
+                    nga.field("nombre", "string").label("Nombre").isDetailLink(true), 
+                    nga.field("descripcion", "text").label("Descripcion"),
+                    nga.field("tipo_propiedad", "choice")
+                        .choices([
+                            { value: 'casa', label: 'Casa' },
+                            { value: 'departamento', label: 'Departamento' },
+                            { value: 'terrenos', label: 'Terrenos' },
+                            { value: 'barrio_privado', label: 'Barrio privado' },
+                            { value: 'locales/oficinas', label: 'Locales/Oficinas' },
+                            { value: 'campos', label: 'Campos' },
+                            { value: 'galpones', label: 'Galpones' },
+                            { value: 'cocheras', label: 'Cocheras' },                           
+                            { value: 'emprendimiento', label: 'Emprendimiento' },
+                        ]),
+                    nga.field("operacion", "choice")
+                        .choices([
+                            { value: 'alquiler', label: 'Alquiler' },
+                            { value: 'venta', label: 'Venta' },                            
+                        ]),
+                    nga.field("dormitorios", "choice")
+                        .choices([
+                            { value: 'monoambiente', label: 'Monoambiente' },
+                            { value: '1dorm', label: '1 Dormitorio' },
+                            { value: '2dorm', label: '2 Dormitorios' },
+                            { value: '3dorm', label: '3 Dormitorios' },
+                            { value: '4dorm', label: '4 Dormitorios ó más' },                            
+                        ]),
+                    nga.field("localidad", "choice")
+                        .choices([
+                            { value: 'rosario', label: 'Rosario' },
+                            { value: 'sanLorenzo', label: 'San Lorenzo' },
+                            { value: 'sanMartin', label: 'Puerto San Martín' },
+                            { value: 'funes', label: 'Funes' },
+                            { value: 'roldan', label: 'Roldán' },
+                            { value: 'beltran', label: 'Fray Luis Beltrán' },
+                            { value: 'bermudez', label: 'Capitán Bermúdez' },
+                            { value: 'uruguay', label: 'Uruguay' },
+                            { value: 'costa', label: 'Costa atlántica' },
+                            { value: 'otros', label: 'Otros' },                                               
+                        ]),
+                    nga.field("direccion", "string").label("Dirección"),
+                    nga.field("codigo_referencia", "string").label("Código de referencia"),
+                    nga.field('contactoId', 'reference')
+                        .targetEntity(contacto)
+                        .targetField(nga.field('nombre'))     
+                ])
+                .actions(["create", "delete"])
+
+            propiedad.deletionView();      
+
+            propiedad.creationView()
+                .fields([
+                    nga.field("nombre", "string").label("Nombre").isDetailLink(true), 
+                    nga.field("descripcion", "text").label("Descripcion"),
+                    nga.field("tipo_propiedad", "choice")
+                        .choices([
+                            { value: 'casa', label: 'Casa' },
+                            { value: 'departamento', label: 'Departamento' },
+                            { value: 'terrenos', label: 'Terrenos' },
+                            { value: 'barrio_privado', label: 'Barrio privado' },
+                            { value: 'locales/oficinas', label: 'Locales/Oficinas' },
+                            { value: 'campos', label: 'Campos' },
+                            { value: 'galpones', label: 'Galpones' },
+                            { value: 'cocheras', label: 'Cocheras' },                           
+                            { value: 'emprendimiento', label: 'Emprendimiento' }
+                        ]),
+                    nga.field("operacion", "choice")
+                        .choices([
+                            { value: 'alquiler', label: 'Alquiler' },
+                            { value: 'venta', label: 'Venta' }                            
+                        ]),
+                    nga.field("dormitorios", "choice")
+                        .choices([
+                            { value: 'monoambiente', label: 'Monoambiente' },
+                            { value: '1dorm', label: '1 Dormitorio' },
+                            { value: '2dorm', label: '2 Dormitorios' },
+                            { value: '3dorm', label: '3 Dormitorios' },
+                            { value: '4dorm', label: '4 Dormitorios ó más' }                            
+                        ]),
+                    nga.field("localidad", "choice")
+                        .choices([
+                            { value: 'rosario', label: 'Rosario' },
+                            { value: 'sanLorenzo', label: 'San Lorenzo' },
+                            { value: 'sanMartin', label: 'Puerto San Martín' },
+                            { value: 'funes', label: 'Funes' },
+                            { value: 'roldan', label: 'Roldán' },
+                            { value: 'beltran', label: 'Fray Luis Beltrán' },
+                            { value: 'bermudez', label: 'Capitán Bermúdez' },
+                            { value: 'uruguay', label: 'Uruguay' },
+                            { value: 'costa', label: 'Costa atlántica' },
+                            { value: 'otros', label: 'Otros' }
+                        ]),
+                    nga.field("direccion", "string").label("Dirección"),
+                    nga.field("codigo_referencia", "string").label("Código de referencia"),
+                    nga.field("precio", "string").label("Precio"),
+                    nga.field("piso", "string").label("Piso"),
+                    nga.field("acceso", "string").label("Acceso"),
+                    nga.field("banios", "string").label("Baños"),
+                    nga.field("cochera", "boolean").label("Tiene cochera")
+                        .choices([
+                                { value: false, label: 'No' },
+                                { value: true, label: 'Sí' },                                                                        
+                            ]),
+                    nga.field("antiguedad", "string").label("Antigüedad"),
+                    nga.field("superficie_aprox", "string").label("Superficie aproximada"),
+                    nga.field("forma_pago", "string").label("Forma de pago"),
+                    nga.field("destacado", "boolean").label("Es destacado?")
+                        .choices([
+                                { value: false, label: 'No' },
+                                { value: true, label: 'Sí' },                                                                        
+                            ]),
+                    nga.field("foto_1", "string").label("Foto 1")
+                        .template('<upload-image number="1"></upload-image>'),
+                    nga.field("foto_2", "string").label("Foto 2")
+                        .template('<upload-image number="2"></upload-image>'),
+                    nga.field("foto_3", "string").label("Foto 3")
+                        .template('<upload-image number="3"></upload-image>'),
+                    nga.field("foto_4", "string").label("Foto 4")
+                        .template('<upload-image number="4"></upload-image>'),
+                    nga.field("foto_5", "string").label("Foto 5")
+                        .template('<upload-image number="5"></upload-image>'),
+                    nga.field("foto_6", "string").label("Foto 6")
+                        .template('<upload-image number="6"></upload-image>'),
+                    nga.field('contactoId', 'reference')
+                        .targetEntity(contacto)
+                        .targetField(nga.field('nombre'))            
+                ])
+                .actions(["create"])
+
+            propiedad.editionView()
+                .fields([
+                    nga.field("nombre", "string").label("Nombre").isDetailLink(true), 
+                    nga.field("descripcion", "text").label("Descripcion"),
+                    nga.field("tipo_propiedad", "choice")
+                        .choices([
+                            { value: 'casa', label: 'Casa' },
+                            { value: 'departamento', label: 'Departamento' },
+                            { value: 'terrenos', label: 'Terrenos' },
+                            { value: 'barrio_privado', label: 'Barrio privado' },
+                            { value: 'locales/oficinas', label: 'Locales/Oficinas' },
+                            { value: 'campos', label: 'Campos' },
+                            { value: 'galpones', label: 'Galpones' },
+                            { value: 'cocheras', label: 'Cocheras' },                           
+                        ]),
+                    nga.field("operacion", "choice")
+                        .choices([
+                            { value: 'alquiler', label: 'Alquiler' },
+                            { value: 'venta', label: 'Venta' },                            
+                        ]),
+                    nga.field("dormitorios", "choice")
+                        .choices([
+                            { value: 'monoambiente', label: 'Monoambiente' },
+                            { value: '1dorm', label: '1 Dormitorio' },
+                            { value: '2dorm', label: '2 Dormitorios' },
+                            { value: '3dorm', label: '3 Dormitorios' },
+                            { value: '4dorm', label: '4 Dormitorios' },                            
+                        ]),
+                    nga.field("localidad", "choice")
+                        .choices([
+                            { value: 'rosario', label: 'Rosario' },
+                            { value: 'sanLorenzo/sanMartin', label: 'San Lorenzo/Pto. San Martín' },
+                            { value: 'funes/roldan', label: 'Funes/Roldán' },
+                            { value: 'beltran/bermudez', label: 'F.L. Beltrán/C. Bermúdez' },
+                            { value: 'uruguay', label: 'Uruguay' },
+                            { value: 'otros', label: 'Otros' },                                               
+                        ]),
+                    nga.field("direccion", "string").label("Dirección"),
+                    nga.field("codigo_referencia", "string").label("Código de referencia"),
+                    nga.field("precio", "string").label("Precio"),
+                    nga.field("piso", "string").label("Piso"),
+                    nga.field("acceso", "string").label("Acceso"),
+                    nga.field("banios", "string").label("Baños"),
+                    nga.field("cochera", "boolean").label("Tiene cochera")
+                        .choices([
+                                { value: false, label: 'No' },
+                                { value: true, label: 'Sí' },                                                                        
+                            ]),
+                    nga.field("antiguedad", "string").label("Antigüedad"),
+                    nga.field("superficie_aprox", "string").label("Superficie aproximada"),
+                    nga.field("forma_pago", "string").label("Forma de pago"),
+                    nga.field("destacado", "boolean").label("Es destacado?")
+                        .choices([
+                                { value: false, label: 'No' },
+                                { value: true, label: 'Sí' },                                                                        
+                            ]),
+                    nga.field("foto_1", "string").label("Foto 1")
+                        .template('<upload-image number="1"></upload-image>'),
+                    nga.field("foto_2", "string").label("Foto 2")
+                        .template('<upload-image number="2"></upload-image>'),
+                    nga.field("foto_3", "string").label("Foto 3")
+                        .template('<upload-image number="3"></upload-image>'),
+                    nga.field("foto_4", "string").label("Foto 4")
+                        .template('<upload-image number="4"></upload-image>'),
+                    nga.field("foto_5", "string").label("Foto 5")
+                        .template('<upload-image number="5"></upload-image>'),
+                    nga.field("foto_6", "string").label("Foto 6")
+                        .template('<upload-image number="6"></upload-image>'),
+                    nga.field('contactoId', 'reference')
+                        .targetEntity(contacto)
+                        .targetField(nga.field('nombre'))             
+                ])
+                .actions(["create"]) 
+
+            propiedad.showView()
+                .fields([
+                    nga.field("nombre", "string").label("Nombre").isDetailLink(true), 
+                    nga.field("descripcion", "text").label("Descripcion"),
+                    nga.field("tipo_propiedad", "choice")
+                        .choices([
+                            { value: 'casa', label: 'Casa' },
+                            { value: 'departamento', label: 'Departamento' },
+                            { value: 'terrenos', label: 'Terrenos' },
+                            { value: 'barrio_privado', label: 'Barrio privado' },
+                            { value: 'locales/oficinas', label: 'Locales/Oficinas' },
+                            { value: 'campos', label: 'Campos' },
+                            { value: 'galpones', label: 'Galpones' },
+                            { value: 'cocheras', label: 'Cocheras' },                           
+                        ]),
+                    nga.field("operacion", "choice")
+                        .choices([
+                            { value: 'alquiler', label: 'Alquiler' },
+                            { value: 'venta', label: 'Venta' },                            
+                        ]),
+                    nga.field("dormitorios", "choice")
+                        .choices([
+                            { value: 'monoambiente', label: 'Monoambiente' },
+                            { value: '1dorm', label: '1 Dormitorio' },
+                            { value: '2dorm', label: '2 Dormitorios' },
+                            { value: '3dorm', label: '3 Dormitorios' },
+                            { value: '4dorm', label: '4 Dormitorios' },                            
+                        ]),
+                    nga.field("localidad", "choice")
+                        .choices([
+                            { value: 'rosario', label: 'Rosario' },
+                            { value: 'sanLorenzo/sanMartin', label: 'San Lorenzo/Pto. San Martín' },
+                            { value: 'funes/roldan', label: 'Funes/Roldán' },
+                            { value: 'beltran/bermudez', label: 'F.L. Beltrán/C. Bermúdez' },
+                            { value: 'uruguay', label: 'Uruguay' },
+                            { value: 'otros', label: 'Otros' },                                               
+                        ]),
+                    nga.field("direccion", "string").label("Dirección"),
+                    nga.field("codigo_referencia", "string").label("Código de referencia"),
+                    nga.field("precio", "string").label("Precio"),
+                    nga.field("piso", "string").label("Piso"),
+                    nga.field("acceso", "string").label("Acceso"),
+                    nga.field("banios", "string").label("Baños"),
+                    nga.field("cochera", "boolean").label("Tiene cochera")
+                        .choices([
+                                { value: false, label: 'No' },
+                                { value: true, label: 'Sí' },                                                                        
+                            ]),
+                    nga.field("antiguedad", "string").label("Antigüedad"),
+                    nga.field("superficie_aprox", "string").label("Superficie aproximada"),
+                    nga.field("forma_pago", "string").label("Forma de pago"),
+                    nga.field("destacado", "boolean").label("Es destacado?")
+                        .choices([
+                                { value: false, label: 'No' },
+                                { value: true, label: 'Sí' },                                                                        
+                            ]),
+                    nga.field("foto_1", "string").label("Foto 1")
+                        .template('<upload-image number="1"></upload-image>'),
+                    nga.field("foto_2", "string").label("Foto 2")
+                        .template('<upload-image number="2"></upload-image>'),
+                    nga.field("foto_3", "string").label("Foto 3")
+                        .template('<upload-image number="3"></upload-image>'),
+                    nga.field("foto_4", "string").label("Foto 4")
+                        .template('<upload-image number="4"></upload-image>'),
+                    nga.field("foto_5", "string").label("Foto 5")
+                        .template('<upload-image number="5"></upload-image>'),
+                    nga.field("foto_6", "string").label("Foto 6")
+                        .template('<upload-image number="6"></upload-image>')        
+                ])
+                .actions(["create"])     
+            
+            contacto.listView()
+                .fields([
+                    nga.field('nombre', 'string').label("Nombre").isDetailLink(true),
+                    nga.field('telefono', 'string').label('Teléfono'),
+                    nga.field('email', 'string').label('Email'),
+                    nga.field('foto', 'string').label('Foto')
+                        .template('<img width="75" height="75" src="http://localhost:3000/api/containers/images/download/{{entry.values.foto}}"></img>')
+                ])
+
+            contacto.creationView()
+                .fields([
+                    nga.field('nombre', 'string').label("Nombre").isDetailLink(true),
+                    nga.field('telefono', 'string').label('Teléfono'),
+                    nga.field('email', 'string').label('Email'),
+                    nga.field('foto', 'string').label('Foto')
+                        .template('<upload-image contacto="true"></upload-image>')
+                ])
+
+            contacto.editionView()
+                .fields([
+                    nga.field('nombre', 'string').label("Nombre").isDetailLink(true),
+                    nga.field('telefono', 'string').label('Teléfono'),
+                    nga.field('email', 'string').label('Email'),
+                    nga.field('foto', 'string').label('Foto')
+                        .template('<upload-image contacto="true"></upload-image>')                             
+                ])
+
+            contacto.showView()
+                .fields([
+                    nga.field('nombre', 'string').label("Nombre").isDetailLink(true),
+                    nga.field('telefono', 'string').label('Teléfono'),
+                    nga.field('email', 'string').label('Email'),
+                    nga.field('foto', 'string').label('Foto')
+                        .template('<img width="75" height="75" src="http://localhost:3000/api/containers/images/download/{{entry.values.foto}}"></img>')
+                ])            
+            
+            admin.addEntity(propiedad);
+            admin.addEntity(contacto);
+
+            nga.configure(admin);
+        }]);
+
+        myApp.directive('uploadImage', function() {
+            return {
+                restrict: 'EA',
+                scope: {
+                    multiple: "@",
+                    number: "@",
+                    contacto: "@"
+                },
+                template: '<input type="file" ng-model="files" multiple ngf-select="checkFile($file)" ngf-multiple="true"></input><div style="background: lightblue; padding: 5px;  width: 50px; display: inline-block; margin: 5px;" ng-click="upload()">Subir</div><img style="margin-top: 5px;" src="{{imgUrl || img}}" height="150" width="150"></img>',
+                controller: function($scope) {
+
+                    console.log(1, $scope, $scope.$parent.entry.values);
+
+                    var url = API_URL + 'containers/images/upload';
+
+                    if (!$scope.contacto) {
+                        $scope.img = API_URL + 'containers/images/download/' + $scope.$parent.entry.values['foto_' + $scope.number];
+                    } else {
+                        $scope.img = API_URL + 'containers/images/download/' + $scope.$parent.entry.values['foto'];
+                    }
+
+                    $scope.checkFile = function($file) {
+                        console.log($file, $scope.files);
+                    };
+
+                    $scope.upload = uploadImg;
+
+                    function uploadImg() {
+                        var formData = new FormData();
+
+                        for (var i = 0; i < $scope.files.length; i++) {
+                            formData.append('file', $scope.files[i]);
+                        }
+
+                        console.log($scope.files, formData);
+
+                        // Para upload es necesario usar jquery ajax con FormData object
+                        if (!$scope.multiple) {
+                            $.ajax({
+                                url: url,
+                                type: 'POST',
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function (res, success) {
+                                    console.log('Image uploaded', res, success);
+                                    $scope.$apply(function() {
+                                        if (!$scope.contacto) {
+                                            $scope.$parent.entry.values['foto_' + $scope.number] = res.result.files.file[0].name;
+                                        } else {
+                                            $scope.$parent.entry.values['foto'] = res.result.files.file[0].name;
+                                        }
+                                        $scope.imgUrl = API_URL + 'containers/images/download/' + res.result.files.file[0].name;
+                                    });
+                                }
+                            });
+                        } else {
+                            $.ajax({
+                                url: url,
+                                type: 'POST',
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function (res, success) {
+                                    console.log('Image uploaded', res, success, res.result.files.file);
+                                    $scope.$apply(function() {
+                                        $scope.$parent.entry.values['fotos'] = [];
+                                        console.log(res.result.files.file);
+
+                                        angular.forEach(res.result.files.file, function(file) {
+                                            $scope.$parent.entry.values['fotos'].push(file.name);
+                                        })
+
+                                        console.log($scope.$parent.entry.values['fotos']);
+                                    });
+                                }                                
+                            });
+                        }
+                    }
+                }
+            };
+        });
+    </script>
+
+
+  </body>
+</html>

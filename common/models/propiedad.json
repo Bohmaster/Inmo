@@ -1,0 +1,90 @@
+{
+  "name": "Propiedad",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "operacion": {
+      "type": "string"
+    },
+    "tipo_propiedad": {
+      "type": "string"
+    },
+    "dormitorios": {
+      "type": "string"
+    },
+    "localidad": {
+      "type": "string"
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "codigo_referencia": {
+      "type": "string"
+    },
+    "precio": {
+      "type": "string"
+    },
+    "piso": {
+      "type": "string"
+    },
+    "acceso": {
+      "type": "string"
+    },
+    "banios": {
+      "type": "string"
+    },
+    "antiguedad": {
+      "type": "string"
+    },
+    "superficie_aprox": {
+      "type": "string"
+    },
+    "forma_pago": {
+      "type": "string"
+    },
+    "foto_1": {
+      "type": "string"
+    },
+    "foto_2": {
+      "type": "string"
+    },
+    "foto_3": {
+      "type": "string"
+    },
+    "foto_4": {
+      "type": "string"
+    },
+    "foto_5": {
+      "type": "string"
+    },
+    "foto_6": {
+      "type": "string"
+    },
+    "destacado": {
+      "type": "boolean"
+    },
+    "cochera": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "contacto": {
+      "type": "hasOne",
+      "model": "Contacto",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
